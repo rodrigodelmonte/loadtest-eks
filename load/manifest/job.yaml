@@ -1,0 +1,22 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  generateName: loadtest-
+spec:
+  template:
+    spec:
+      containers:
+      - name: loadtest
+        image: 
+        env:
+        - name: FREQUENCY
+          value: 10
+        - name: DURATION
+          value: 10
+        - name: METHOD
+          value: GET
+        - name: URL
+          value: htto://app.default.svc
+      restartPolicy: Never
+      nodeSelector:
+        eks.amazonaws.com/nodegroup: node-group-load-20240207114437297500000017
